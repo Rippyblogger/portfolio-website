@@ -5,6 +5,8 @@ on:
     push:
         branches-ignore:
             - main
+            - staging
+            - dev
 
 jobs:
     test:
