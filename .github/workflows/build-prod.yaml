@@ -6,6 +6,8 @@ env:
 on:
     workflow_dispatch:
     pull_request:
+        branches:
+            - main
         types:
             - closed
 jobs:
@@ -36,7 +38,6 @@ jobs:
                 push: true
                 tags: |
                   ${{env.IMAGE_NAME}}:latest
-                  ${{env.IMAGE_NAME}}:${{github.sha}}
-                  user/app:latest
+                  ${{env.IMAGE_NAME}}:prod_${{github.sha}}
                 context: .
                 file: ./Dockerfile
