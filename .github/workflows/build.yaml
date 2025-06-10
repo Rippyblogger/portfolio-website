@@ -1,5 +1,8 @@
 name: Build portfolio app
 
+env:
+    IMAGE_NAME: ${{secrets.DOCKERHUB_USERNAME}}/portfolio-website
+
 on:
     workflow_dispatch:
     pull_request:
@@ -32,7 +35,8 @@ jobs:
               with:
                 push: true
                 tags: |
-                  user/app:1.0
+                  ${{env.IMAGE_NAME}}:latest
+                  ${{env.IMAGE_NAME}}:${{github.sha}}
                   user/app:latest
                 context: .
                 file: ./Dockerfile
