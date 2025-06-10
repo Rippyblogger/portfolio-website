@@ -1,3 +1,5 @@
-FROM node:lts-alpine3.22
-COPY . .
-RUN npm cache clean --force && npm install && npm run build
+FROM node:current-alpine3.21 
+COPY . /app
+WORKDIR /app
+RUN rm -rf node_modules package-lock.json && npm cache clean --force && npm ci
+
